@@ -152,6 +152,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed66e719d03a2404996e7d53f4c05c51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battybuggie:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.040538788
+      value: 0.49224854
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.95563054
+      value: 1.0447392
+      inSlope: 0.009571966
+      outSlope: 0.009571966
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.5134104
+      value: 0.5067272
+      inSlope: -2.8191698
+      outSlope: -2.8191698
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.7026752
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  thesize: {x: 0, y: 0, z: 0}
+  time: 1
 --- !u!212 &1119507662
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -194,7 +229,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 74728dbf4194717439aea00d9b7db303, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7924528, g: 0.16820934, b: 0.71970826, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
