@@ -9,6 +9,7 @@ public class wk11inclass : MonoBehaviour
     Animator annimator;
     public float speed = 2;
     public bool canRun = true;
+    public AudioSource AudioSource;
     void Start()
     {
         annimator = GetComponent<Animator>();
@@ -39,5 +40,19 @@ public class wk11inclass : MonoBehaviour
     {
         Debug.Log("The atack has finished");
         canRun = true;
+    }
+    public void SoundThing()
+    {
+        AudioSource.Play();
+    }
+
+    public void SoundThing2()
+    {
+        AudioSource.Play();
+    }
+
+    public void SoundThing3()
+    {
+        AudioSource.Play();
     }
 }
