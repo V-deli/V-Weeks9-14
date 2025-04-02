@@ -8,6 +8,7 @@ public class coroutgrowervid2 : MonoBehaviour
     public float minSize = 0;
     public float maxSize = 1;
     public float t;
+    public Transform apple;
 
    
     public void startgrowing()
@@ -17,14 +18,21 @@ public class coroutgrowervid2 : MonoBehaviour
 
     public IEnumerator Grow()
     {
+        apple.localScale = Vector3.zero;
         t = 0;
         while (t < 1) //use while with it
         {
             t = Time.deltaTime;
-            yield return null;
             transform.localScale = Vector3.one * maxSize * curve.Evaluate(t);
+            yield return null;
         }
-        
-        
+        t = 0;
+        while (t < 1) //use while with it
+        {
+            t = Time.deltaTime;
+            apple.localScale = Vector3.one * maxSize * curve.Evaluate(t);
+            yield return null;
+        }
+
     }
 }
