@@ -8,11 +8,27 @@ public class lerpgrowerwk10vid1 : MonoBehaviour
     public float minSize = 0;
     public float maxSize = 1;
     public float t;
+    public bool startGrowing;
 
     private void Update()
     {
-        Grow();
+        //if(Input.GetMouseButton(0))
+        //{
+        //    startgrowing();
+        //}
+
+        if (startGrowing)
+        {
+            Grow();
+        }
+        //asynchronous code
     }
+    public  void startgrowing()
+    {
+        startGrowing = true;
+        t = 0;
+    }
+
     private void Grow()
     {
         //t = Time.deltaTime;
@@ -21,6 +37,11 @@ public class lerpgrowerwk10vid1 : MonoBehaviour
         {
             t = Time.deltaTime;
         }
+        else
+        {
+            startGrowing = false;
+        }
+
         transform.localScale = Vector3.one * maxSize * curve.Evaluate(t);
        // transform.localScale = Vector3.Lerp(Vector3.one * minSize, Vector3.one * maxSize, curve.Evaluate(t));
     }
