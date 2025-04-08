@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -29,5 +30,10 @@ public class Hexagonvid2 : MonoBehaviour
                 onHit.Invoke(); //new
             }
         }
+    }
+
+    public void MakeMeBigger()
+    {
+        transform.localScale += Vector3.one * 0.1f;
     }
 }
