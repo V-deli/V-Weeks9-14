@@ -13,7 +13,11 @@ public class ArrowShooter : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            
+            GameObject arrow = weaponmanagerscript.getcurrentarrow();
+            if (arrow != null)
+            {
+                Instantiate(arrow, firePoint.position, Quaternion.identity);
+            }
         }
     }
 }

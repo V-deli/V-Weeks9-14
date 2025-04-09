@@ -16,15 +16,41 @@ public class WeaponManager : MonoBehaviour
     private GameObject currentarrowprefab;
 
 
-    
+
     void Start()
     {
-        
+        EquipArrow(normalarrowprefab, normalarrow);
     }
 
-    
-    void Update()
+    public void EquipArrow(GameObject arrowprefab, Sprite bowArt)
     {
-        
+        currentarrowprefab = arrowprefab;
+        bowsprite.sprite = bowArt;
+        onWeaponChange.Invoke();
+        if (powerupcoroutine != null)
+        {
+            StopCoroutine(powerupcoroutine);
+        }
+        //powerupcoroutine = StartCoroutine(poweruptimer);
+    }
+    IEnumerator poweruptimer()
+    {
+        yield return new WaitForSeconds(5f);
+        EquipArrow(normalarrowprefab, normalarrow);
+    }
+
+    public GameObject getcurrentarrow()
+    {
+        return currentarrowprefab;
+    }
+
+
+    public void cancelpowerup()
+    {
+        if (powerupcoroutine != null)
+        {
+            StopCoroutine(powerupcoroutine);
+            EquipArrow(normalarrowprefab, normalarrow);
+        }
     }
 }
