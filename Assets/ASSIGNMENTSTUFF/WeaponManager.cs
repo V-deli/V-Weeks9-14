@@ -27,13 +27,16 @@ public class WeaponManager : MonoBehaviour
         currentarrowprefab = arrowprefab;
         bowsprite.sprite = bowArt;
         onWeaponChange.Invoke();
+
         if (powerupcoroutine != null)
         {
             StopCoroutine(powerupcoroutine);
         }
-        //powerupcoroutine = StartCoroutine(poweruptimer);
+        powerupcoroutine = StartCoroutine(poweruptimer);
     }
+
     IEnumerator poweruptimer()
+   
     {
         yield return new WaitForSeconds(5f);
         EquipArrow(normalarrowprefab, normalarrow);

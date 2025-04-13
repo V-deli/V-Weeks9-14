@@ -7,6 +7,6 @@ public class NormalArrow : MonoBehaviour
    
      void Update()
     {
-        transform.position += transform.up * 3f * Time.deltaTime;
+        transform.position += Vector3.up * 3f * Time.deltaTime;
     }
 }
