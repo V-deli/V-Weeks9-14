@@ -6,11 +6,11 @@ using UnityEngine.Events;
 public class WeaponManager : MonoBehaviour
 {
     public UnityEvent onWeaponChange;
-    public GameObject normalarrowprefab;
-    public GameObject doublearrowprefab;
-    public GameObject fastarrowprefab;
+    public GameObject normalability; //= pick ups
+    public GameObject doubleability;
+    public GameObject fastability;
     public SpriteRenderer bowsprite;
-    public Sprite normalarrow, doublearrow, fastarrow;
+    public Sprite normalbow, doublebow, fastbow;
 
     private Coroutine powerupcoroutine;
     private GameObject currentarrowprefab;
@@ -19,7 +19,7 @@ public class WeaponManager : MonoBehaviour
 
     void Start()
     {
-        EquipArrow(normalarrowprefab, normalarrow);
+        EquipArrow(normalability, normalbow);
     }
 
     public void EquipArrow(GameObject arrowprefab, Sprite bowArt)
@@ -39,7 +39,7 @@ public class WeaponManager : MonoBehaviour
    
     {
         yield return new WaitForSeconds(5f);
-        EquipArrow(normalarrowprefab, normalarrow);
+        EquipArrow(normalability, normalbow);
     }
 
     public GameObject getcurrentarrow()
@@ -53,7 +53,7 @@ public class WeaponManager : MonoBehaviour
         if (powerupcoroutine != null)
         {
             StopCoroutine(powerupcoroutine);
-            EquipArrow(normalarrowprefab, normalarrow);
+            EquipArrow(normalability, normalbow);
         }
     }
 }

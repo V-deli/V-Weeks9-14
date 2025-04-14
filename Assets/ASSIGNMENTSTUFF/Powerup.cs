@@ -9,21 +9,21 @@ public class Powerup : MonoBehaviour
     public SpriteRenderer powerupRenderer;
 
     public void CollectPowerUp // v (cond) v
-        (SpriteRenderer bowRenderer, WeaponManager weaponmanagerscript, Sprite normalsprite, Sprite doublearrowsprite, Sprite fastarrowsprite)
+        (SpriteRenderer bowRenderer, WeaponManager weaponmanagerscript, Sprite normalbow, Sprite doublebow, Sprite fastbow)
     {
         Sprite powerSprite = powerupRenderer.sprite;
 
-        if (powerSprite == normalsprite)
+        if (powerSprite == normalbow)
         {
-            weaponmanagerscript.EquipArrow(weaponmanagerscript.normalarrowprefab, normalsprite);
+            weaponmanagerscript.EquipArrow(weaponmanagerscript.normalability, normalbow);
         }
-        else if (powerSprite == doublearrowsprite)
+        else if (powerSprite == doublebow)
         {
-            weaponmanagerscript.EquipArrow(weaponmanagerscript.doublearrowprefab, doublearrowsprite);
+            weaponmanagerscript.EquipArrow(weaponmanagerscript.doubleability, doublebow);
         }
-        else if (powerSprite == fastarrowsprite)
+        else if (powerSprite == fastbow)
         {
-            weaponmanagerscript.EquipArrow(weaponmanagerscript.fastarrowprefab, fastarrowsprite);
+            weaponmanagerscript.EquipArrow(weaponmanagerscript.fastability, fastbow);
         }
 
 

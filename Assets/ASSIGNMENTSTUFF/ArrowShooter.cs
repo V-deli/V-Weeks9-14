@@ -9,9 +9,9 @@ public class ArrowShooter : MonoBehaviour
     public Transform firePoint;
     public SpriteRenderer bowSpriterenderer;
 
-    public Sprite normalsprite;
-    public Sprite doublearowsprite;
-    public Sprite fastarrowsprite;
+    public Sprite normalbow;
+    public Sprite doublebow;
+    public Sprite fastbow;
 
     public Powerup[] allpowerups;
 
@@ -35,7 +35,7 @@ public class ArrowShooter : MonoBehaviour
 
                 if (diffX < 1.0f && diffY < 1.0f)
                 {
-                    allpowerups[i].CollectPowerUp(bowSpriterenderer, weaponmanagerscript, normalsprite, doublearowsprite, fastarrowsprite);
+                    allpowerups[i].CollectPowerUp(bowSpriterenderer, weaponmanagerscript, normalbow, doublebow, fastbow);
                     i = allpowerups.Length;
                 }
                 else
