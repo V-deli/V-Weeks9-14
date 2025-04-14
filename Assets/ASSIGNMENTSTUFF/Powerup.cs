@@ -5,75 +5,32 @@ using UnityEngine.Events;
 
 public class Powerup : MonoBehaviour
 {
-    //public GameObject arrowSpawnpoint;
-    //public GameObject normalArrowPrefab;
-    //public GameObject doubleArrowPrefab;
-    //public GameObject fastArrowPrefab;
-
     public UnityEvent onPowerupcollected = new UnityEvent();
     public SpriteRenderer powerupRenderer;
 
-//    public Sprite normalsprite;
-//    public Sprite doublearrowsprite;
-//    public Sprite fastarrowsprite;
-
-//    private Coroutine powerUpCorou;
-//    private string currentArrowtype = "Normal";
-
-
-    
-//    void Update()
-//    {
-//        if  (Input.GetKeyDown(KeyCode.Return))
-//        {
-//            FireArrow();
-//        }
-//    }
-
-//    void FireArrow()
-//{
-//        if (currentArrowtype == "Normal")
-//        {
-//            Instantiate(normalArrowPrefab, arrowSpawnpoint.transform.position, Quaternion.identity);
-//        }
-//        else if (currentArrowtype == "Double")
-//        {
-//            Instantiate(doubleArrowPrefab, arrowSpawnpoint.transform.position, Quaternion.identity);
-//        }
-//        else if(currentArrowtype == "Fast")
-//        {
-//            Instantiate(fastArrowPrefab, arrowSpawnpoint.transform.position, Quaternion.identity);
-//        }
-//}
-
-    public void CollectPowerUp()
+    public void CollectPowerUp // v (cond) v
+        (SpriteRenderer bowRenderer, WeaponManager weaponmanagerscript, Sprite normalsprite, Sprite doublearrowsprite, Sprite fastarrowsprite)
     {
-        //if (powerUpCorou != null)
-        //{
-        //    StopCoroutine(powerUpCorou);
-        //}
-        //powerUpCorou = StartCoroutine(PowerUpTimer(type));
+        Sprite powerSprite = powerupRenderer.sprite;
+
+        if (powerSprite == normalsprite)
+        {
+            weaponmanagerscript.EquipArrow(weaponmanagerscript.normalarrowprefab, normalsprite);
+        }
+        else if (powerSprite == doublearrowsprite)
+        {
+            weaponmanagerscript.EquipArrow(weaponmanagerscript.doublearrowprefab, doublearrowsprite);
+        }
+        else if (powerSprite == fastarrowsprite)
+        {
+            weaponmanagerscript.EquipArrow(weaponmanagerscript.fastarrowprefab, fastarrowsprite);
+        }
+
+
         onPowerupcollected.Invoke();
         gameObject.SetActive(false);
     }
 
-    //IEnumerator PowerUpTimer(string type)
-    //{
-    //    currentArrowtype = type;
-    //    UpdateBowSprite();
-    //    yield return new WaitForSeconds(5f);
-    //    currentArrowtype = "Normal";
-    //    UpdateBowSprite();
-    //}
-
-    //void UpdateBowSprite()
-    //{
-    //    if (currentArrowtype == "Normal")
-    //        bowRenderer.sprite = normalsprite;
-    //    else if (currentArrowtype == "Double")
-    //        bowRenderer.sprite = doublearrowsprite;
-    //    else if (currentArrowtype == "Fast")
-    //        bowRenderer.sprite = fastarrowsprite;
-    //}
+    
 
 }
