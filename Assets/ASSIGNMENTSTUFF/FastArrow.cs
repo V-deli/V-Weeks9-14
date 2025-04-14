@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class FastArrow : MonoBehaviour
 {
+    private bool moveRight = false;
 
     void Update()
     {
-        transform.position += Vector3.right * 6f * Time.deltaTime;
+        if (moveRight)
+        {
+            transform.localPosition += Vector3.right * 10f * Time.deltaTime;
+        }
+    }
+
+    public void Activate(Vector3 newPos)
+    {
+        transform.localPosition = newPos;
+        moveRight = true;
     }
 }

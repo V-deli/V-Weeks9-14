@@ -4,9 +4,20 @@ using UnityEngine;
 
 public class NormalArrow : MonoBehaviour
 {
-   
-     void Update()
+    private bool moveRight = false;
+
+    void Update()
     {
-        transform.localPosition += Vector3.right * 3f * Time.deltaTime; 
+        if (moveRight)
+        {
+            transform.localPosition += Vector3.right * 3f * Time.deltaTime;
+        }
+    }
+
+    public void Activate(Vector3 newPos)
+    {
+        transform.localPosition = newPos;
+        moveRight = true;
     }
 }
+    

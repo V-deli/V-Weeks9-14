@@ -5,17 +5,23 @@ using UnityEngine;
 public class DoubleArrow : MonoBehaviour
 {
    public GameObject arrowPrefab;
+    private bool fired = false;
+    private Vector3 spawnPos;
 
-    private void Start()
+    public void Activate(Vector3 newPos)
     {
-        Shoot();
+        spawnPos = newPos;
+        fired = true;
     }
 
-    public void Shoot()
+     void Update()
     {
-        GameObject arrow1 = Instantiate(arrowPrefab, transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
-        GameObject arrow2 = Instantiate(arrowPrefab, transform.position + new Vector3(0, -0.3f, 0), Quaternion.identity);
-
-        Destroy(gameObject);
+        if (fired)
+        {
+            GameObject arrow1 = Instantiate(arrowPrefab, transform.position + new Vector3(0, 0.3f, 0), Quaternion.identity);
+            GameObject arrow2 = Instantiate(arrowPrefab, transform.position + new Vector3(0, -0.3f, 0), Quaternion.identity);
+            fired = false;
+            Destroy(gameObject);
+        }
     }
 }
