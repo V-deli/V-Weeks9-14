@@ -5,74 +5,75 @@ using UnityEngine.Events;
 
 public class Powerup : MonoBehaviour
 {
-    public GameObject arrowSpawnpoint;
-    public GameObject normalArrowPrefab;
-    public GameObject doubleArrowPrefab;
-    public GameObject fastArrowPrefab;
+    //public GameObject arrowSpawnpoint;
+    //public GameObject normalArrowPrefab;
+    //public GameObject doubleArrowPrefab;
+    //public GameObject fastArrowPrefab;
 
     public UnityEvent onPowerupcollected = new UnityEvent();
+    public SpriteRenderer powerupRenderer;
 
-    public SpriteRenderer bowRenderer;
-    public Sprite normalsprite;
-    public Sprite doublearrowsprite;
-    public Sprite fastarrowsprite;
+//    public Sprite normalsprite;
+//    public Sprite doublearrowsprite;
+//    public Sprite fastarrowsprite;
 
-    private Coroutine powerUpCorou;
-    private string currentArrowtype = "Normal";
+//    private Coroutine powerUpCorou;
+//    private string currentArrowtype = "Normal";
 
 
     
-    void Update()
-    {
-        if  (Input.GetKeyDown(KeyCode.Return))
-        {
-            FireArrow();
-        }
-    }
+//    void Update()
+//    {
+//        if  (Input.GetKeyDown(KeyCode.Return))
+//        {
+//            FireArrow();
+//        }
+//    }
 
-    void FireArrow()
-{
-        if (currentArrowtype == "Normal")
-        {
-            Instantiate(normalArrowPrefab, arrowSpawnpoint.transform.position, Quaternion.identity);
-        }
-        else if (currentArrowtype == "Double")
-        {
-            Instantiate(doubleArrowPrefab, arrowSpawnpoint.transform.position, Quaternion.identity);
-        }
-        else if(currentArrowtype == "Fast")
-        {
-            Instantiate(fastArrowPrefab, arrowSpawnpoint.transform.position, Quaternion.identity);
-        }
-}
+//    void FireArrow()
+//{
+//        if (currentArrowtype == "Normal")
+//        {
+//            Instantiate(normalArrowPrefab, arrowSpawnpoint.transform.position, Quaternion.identity);
+//        }
+//        else if (currentArrowtype == "Double")
+//        {
+//            Instantiate(doubleArrowPrefab, arrowSpawnpoint.transform.position, Quaternion.identity);
+//        }
+//        else if(currentArrowtype == "Fast")
+//        {
+//            Instantiate(fastArrowPrefab, arrowSpawnpoint.transform.position, Quaternion.identity);
+//        }
+//}
 
-    public void CollectPowerUp(string type)
+    public void CollectPowerUp()
     {
-        if (powerUpCorou != null)
-        {
-            StopCoroutine(powerUpCorou);
-        }
-        powerUpCorou = StartCoroutine(PowerUpTimer(type));
+        //if (powerUpCorou != null)
+        //{
+        //    StopCoroutine(powerUpCorou);
+        //}
+        //powerUpCorou = StartCoroutine(PowerUpTimer(type));
         onPowerupcollected.Invoke();
+        gameObject.SetActive(false);
     }
 
-    IEnumerator PowerUpTimer(string type)
-    {
-        currentArrowtype = type;
-        UpdateBowSprite();
-        yield return new WaitForSeconds(5f);
-        currentArrowtype = "Normal";
-        UpdateBowSprite();
-    }
+    //IEnumerator PowerUpTimer(string type)
+    //{
+    //    currentArrowtype = type;
+    //    UpdateBowSprite();
+    //    yield return new WaitForSeconds(5f);
+    //    currentArrowtype = "Normal";
+    //    UpdateBowSprite();
+    //}
 
-    void UpdateBowSprite()
-    {
-        if (currentArrowtype == "Normal")
-            bowRenderer.sprite = normalsprite;
-        else if (currentArrowtype == "Double")
-            bowRenderer.sprite = doublearrowsprite;
-        else if (currentArrowtype == "Fast")
-            bowRenderer.sprite = fastarrowsprite;
-    }
+    //void UpdateBowSprite()
+    //{
+    //    if (currentArrowtype == "Normal")
+    //        bowRenderer.sprite = normalsprite;
+    //    else if (currentArrowtype == "Double")
+    //        bowRenderer.sprite = doublearrowsprite;
+    //    else if (currentArrowtype == "Fast")
+    //        bowRenderer.sprite = fastarrowsprite;
+    //}
 
 }

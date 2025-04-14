@@ -32,7 +32,7 @@ public class WeaponManager : MonoBehaviour
         {
             StopCoroutine(powerupcoroutine);
         }
-        powerupcoroutine = StartCoroutine(poweruptimer);
+        powerupcoroutine = StartCoroutine(poweruptimer());
     }
 
     IEnumerator poweruptimer()
