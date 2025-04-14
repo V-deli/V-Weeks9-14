@@ -8,12 +8,13 @@ public class ArrowShooter : MonoBehaviour
     public WeaponManager weaponmanagerscript;
     public Transform firePoint;
     public SpriteRenderer bowSpriterenderer;
+    public SpriteRenderer abilitysprites;
 
     public Sprite normalbow;
     public Sprite doublebow;
     public Sprite fastbow;
-
-    public Powerup[] allpowerups;
+    public GameObject[] allpowerups;
+    //public Powerup[] allpowerups;
     private Powerup selectedPowerup;
 
     public GameObject[] abilityPrefabs;
@@ -23,6 +24,8 @@ public class ArrowShooter : MonoBehaviour
 
     void Start()
     {
+        allpowerups = new GameObject[numberToSpawn];
+        
         for (int i = 0; i < numberToSpawn; i++)
         {
             GameObject prefabtospawn = abilityPrefabs[Random.Range(0, abilityPrefabs.Length)];
@@ -30,7 +33,7 @@ public class ArrowShooter : MonoBehaviour
             Vector3 spawnPos = new Vector3(Random.Range(spawnAreaMin.x, spawnAreaMax.x),
             Random.Range(spawnAreaMin.y, spawnAreaMax.y), 0f);
 
-            Instantiate(prefabtospawn, spawnPos, Quaternion.identity);
+            allpowerups[i] = Instantiate(prefabtospawn, spawnPos, Quaternion.identity);
 
             //        int type = Random.Range(0, 3);
             //        if (type == 0) toSpawn = Instantiate(normalability);
@@ -43,12 +46,12 @@ public class ArrowShooter : MonoBehaviour
     }
 
 
-     void Update()
+    void Update()
     {
-        float moveX = Input.GetAxisRaw("Horizontal");
+        //float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
-        transform.localPosition += new Vector3(moveX, moveY, 0f) * Time.deltaTime * 5f;
+        transform.localPosition += new Vector3(0, moveY, 0f) * Time.deltaTime * 5f;
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -61,8 +64,8 @@ public class ArrowShooter : MonoBehaviour
             int closestindex = -1;
 
 
-            
-            for (int i =0; i < allpowerups.Length; i ++)
+
+            for (int i = 0; i < allpowerups.Length; i++)
             {
                 //Vector3 puPos = allpowerups[i].transform.localPosition;
                 // Vector3 bowPos = transform.localPosition;
@@ -70,39 +73,40 @@ public class ArrowShooter : MonoBehaviour
 
                 float distX = Mathf.Abs(mouseWorld.x - allpowerups[i].transform.localPosition.x);
                 float distY = Mathf.Abs(mouseWorld.y - allpowerups[i].transform.localPosition.y);
-                float dist = distX * distX + distY;
+                float dist  = distX + distY;
 
                 if (dist < minDistance)
                 {
                     minDistance = dist;
                     closestindex = i;
                 }
-                
+
             }
 
-            if (closestindex != -1)
-            {
-                selectedPowerup = allpowerups[closestindex];
-                Debug.Log("Selected Power-up: " + selectedPowerup.name);
-                selectedPowerup.CollectPowerUp(bowSpriterenderer, weaponmanagerscript, normalbow, doublebow, fastbow);
-                //    Sprite selected = allpowerups[closestIndex].powerupRenderer.sprite;
+        //    if (closestindex != -1)
+        //    {
+        //        selectedPowerup = allpowerups[closestindex];
+        //        Debug.Log("Selected Power-up: " + selectedPowerup.name);
+        //        selectedPowerup.CollectPowerUp(bowSpriterenderer, weaponmanagerscript, normalbow, doublebow, fastbow);
 
-                //    if (selected == normalbow)
-                //    {
-                //        weaponmanagerscript.EquipArrow(normalability, normalbow);
-                //    }
-                //    else if (selected == doublebow)
-                //    {
-                //        weaponmanagerscript.EquipArrow(doubleability, doublebow);
-                //    }
-                //    else if (selected == fastbow)
-                //    {
-                //        weaponmanagerscript.EquipArrow(fastability, fastbow);
-                //    }
-                //    allpowerups[closestIndex].transform.localPosition = new Vector3(1000, 1000, 0);
-                //}
-            }
-        
+        //        Sprite selected = allpowerups[closestindex].powerupRenderer.sprite;
+
+        //        if (selected == normalbow)
+        //        {
+        //            weaponmanagerscript.EquipArrow(abilityPrefabs[0], normalbow);
+        //        }
+        //        else if (selected == doublebow)
+        //        {
+        //            weaponmanagerscript.EquipArrow(abilityPrefabs[1], doublebow);
+        //        }
+        //        else if (selected == fastbow)
+        //        {
+        //            weaponmanagerscript.EquipArrow(abilityPrefabs[2], fastbow);
+        //        }
+        //        allpowerups[closestindex].transform.localPosition = new Vector3(1000, 1000, 0);
+        //    }
+        }
+    
 
         if(Input.GetKeyDown(KeyCode.F) && selectedPowerup != null && selectedPowerup.isActivated)
         {
@@ -126,9 +130,11 @@ public class ArrowShooter : MonoBehaviour
                     {
                         newArrow.GetComponent<DoubleArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y, 0f));
                     }
+                Destroy(newArrow, 5);
+
                 }
             }
-        }
+        
 
     }
 }

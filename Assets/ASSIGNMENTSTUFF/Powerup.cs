@@ -8,10 +8,17 @@ public class Powerup : MonoBehaviour
     public UnityEvent onPowerupcollected = new UnityEvent();
     public SpriteRenderer powerupRenderer;
     public bool isActivated = false;
+    public ArrowShooter shooter; //script
+
+     void Start()
+    {
+        powerupRenderer = GetComponent<SpriteRenderer>();
+    }
 
     public void CollectPowerUp // v (cond) v
-        (SpriteRenderer bowRenderer, WeaponManager weaponmanagerscript, Sprite normalbow, Sprite doublebow, Sprite fastbow)
+    (SpriteRenderer bowRenderer, WeaponManager weaponmanagerscript, Sprite normalbow, Sprite doublebow, Sprite fastbow)
     {
+        onPowerupcollected.Invoke();
         Sprite powerSprite = powerupRenderer.sprite;
 
         if (powerSprite == normalbow)
@@ -27,11 +34,15 @@ public class Powerup : MonoBehaviour
             weaponmanagerscript.EquipArrow(weaponmanagerscript.fastability, fastbow);
         }
 
-            isActivated = true;
-           onPowerupcollected.Invoke();
+        isActivated = true;
+
         //    gameObject.SetActive(false);
-        }
-
-
+    }
+    public void correctpowerup () //new 
+    {
 
     }
+
+
+
+}

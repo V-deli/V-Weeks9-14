@@ -21,7 +21,8 @@ public class WeaponManager : MonoBehaviour
     void Start()
     {
         bowsprite.sprite = emptybow;
-        EquipArrow(normalability, normalbow);
+        EquipArrow(normalability, emptybow);
+        //currentarrowprefab = null;
     }
 
     public void EquipArrow(GameObject arrowprefab, Sprite bowArt)
