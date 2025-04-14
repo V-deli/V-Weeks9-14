@@ -24,18 +24,23 @@ public class ArrowShooter : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            foreach (Powerup powerup in allpowerups) // in vv
+            int i = 0;
+            while (i < allpowerups.Length) 
             {
                 Vector3 bowPos = transform.localPosition;
-                Vector3 puPos = powerup.transform.localPosition;
+                Vector3 puPos = allpowerups[i].transform.localPosition;
 
                 float diffX = Mathf.Abs(bowPos.x - puPos.x);
                 float diffY = Mathf.Abs(bowPos.y - puPos.y);
 
                 if (diffX < 1.0f && diffY < 1.0f)
                 {
-                    powerup.CollectPowerUp(bowSpriterenderer, weaponmanagerscript, normalsprite, doublearowsprite, fastarrowsprite);
-                    break; //suggested by visual studio? , know I can use foreach but I dont recall learning this, ill check the videos
+                    allpowerups[i].CollectPowerUp(bowSpriterenderer, weaponmanagerscript, normalsprite, doublearowsprite, fastarrowsprite);
+                    i = allpowerups.Length;
+                }
+                else
+                {
+                    i++;
                 }
             }
         }
