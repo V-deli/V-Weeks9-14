@@ -12,7 +12,7 @@ public class WeaponManager : MonoBehaviour
     public SpriteRenderer bowsprite;
     public Sprite normalbow, doublebow, fastbow;
 
-    private Coroutine powerupcoroutine;
+    //private Coroutine powerupcoroutine;
     private GameObject currentarrowprefab;
 
 
@@ -27,33 +27,34 @@ public class WeaponManager : MonoBehaviour
         currentarrowprefab = arrowprefab;
         bowsprite.sprite = bowArt;
         onWeaponChange.Invoke();
-
-        if (powerupcoroutine != null)
-        {
-            StopCoroutine(powerupcoroutine);
-        }
-        powerupcoroutine = StartCoroutine(poweruptimer());
     }
 
-    IEnumerator poweruptimer()
-   
-    {
-        yield return new WaitForSeconds(5f);
-        EquipArrow(normalability, normalbow);
-    }
+        //        if (powerupcoroutine != null)
+        //        {
+        //            StopCoroutine(powerupcoroutine);
+        //        }
+        //        powerupcoroutine = StartCoroutine(poweruptimer());
+        //    }
 
-    public GameObject getcurrentarrow()
+        //    IEnumerator poweruptimer()
+
+        //    {
+        //        yield return new WaitForSeconds(5f);
+        //        EquipArrow(normalability, normalbow);
+        //    }
+
+            public GameObject getcurrentarrow()
     {
         return currentarrowprefab;
     }
 
 
-    public void cancelpowerup()
-    {
-        if (powerupcoroutine != null)
-        {
-            StopCoroutine(powerupcoroutine);
-            EquipArrow(normalability, normalbow);
-        }
-    }
+    //    public void cancelpowerup()
+    //    {
+    //        if (powerupcoroutine != null)
+    //        {
+    //            StopCoroutine(powerupcoroutine);
+    //            EquipArrow(normalability, normalbow);
+    //        }
+    //    }
 }

@@ -14,6 +14,24 @@ public class ArrowShooter : MonoBehaviour
     public Sprite fastbow;
 
     public Powerup[] allpowerups;
+    public GameObject normalability; //= pick ups
+    public GameObject doubleability;
+    public GameObject fastability;
+
+     void Start()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject toSpawn = null;
+            int type = Random.Range(0, 3);
+            if (type == 0) toSpawn = Instantiate(normalability);
+            else if (type == 1) toSpawn = Instantiate(doubleability);
+            else toSpawn = Instantiate(fastability);
+
+            toSpawn.transform.localPosition = new Vector3(Random.Range(-7f, 7f), Random.Range(-4f, 4f), 0);
+        }
+    }
+
 
     void Update()
     {
@@ -22,34 +40,60 @@ public class ArrowShooter : MonoBehaviour
 
         transform.localPosition += new Vector3(moveX, moveY, 0f) * Time.deltaTime * 5f;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 closestPos = Vector3.zero;
+            float minDistance = 9999f;
+            int closestIndex = -1;
+
             int i = 0;
-            while (i < allpowerups.Length) 
+            while (i < allpowerups.Length)
             {
-                Vector3 bowPos = transform.localPosition;
                 Vector3 puPos = allpowerups[i].transform.localPosition;
+                // Vector3 bowPos = transform.localPosition;
+                // Vector3 puPos = allpowerups[i].transform.localPosition;
 
-                float diffX = Mathf.Abs(bowPos.x - puPos.x);
-                float diffY = Mathf.Abs(bowPos.y - puPos.y);
+                float distX = mouseWorld.x - puPos.x;
+                float distY = mouseWorld.y - puPos.y;
+                float dist = distX * distX + distY * distY;
 
-                if (diffX < 1.0f && diffY < 1.0f)
+                if (dist < minDistance)
                 {
-                    allpowerups[i].CollectPowerUp(bowSpriterenderer, weaponmanagerscript, normalbow, doublebow, fastbow);
-                    i = allpowerups.Length;
+                    minDistance = dist;
+                    closestPos = puPos;
+                    closestIndex = i;
                 }
-                else
+                i++;
+            }
+
+            if (closestIndex != -1)
+            {
+                Sprite selected = allpowerups[closestIndex].powerupRenderer.sprite;
+
+                if (selected == normalbow)
                 {
-                    i++;
+                    weaponmanagerscript.EquipArrow(normalability, normalbow);
                 }
+                else if (selected == doublebow)
+                {
+                    weaponmanagerscript.EquipArrow(doubleability, doublebow);
+                }
+                else if (selected == fastbow)
+                {
+                    weaponmanagerscript.EquipArrow(fastability, fastbow);
+                }
+                allpowerups[closestIndex].transform.localPosition = new Vector3(1000, 1000, 0);
             }
         }
+        
 
-        if(Input.GetKeyDown(KeyCode.Return))
+        if(Input.GetKeyDown(KeyCode.F))
         {
             GameObject arrow = weaponmanagerscript.getcurrentarrow();
             if (arrow != null)
             {
+                Vector3 spawnPos = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
                 Instantiate(arrow, firePoint.position, Quaternion.identity);
             }
         }
