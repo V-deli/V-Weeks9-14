@@ -10,6 +10,7 @@ public class WeaponManager : MonoBehaviour
     public GameObject doubleability;
     public GameObject fastability;
     public SpriteRenderer bowsprite;
+    public Sprite emptybow;
     public Sprite normalbow, doublebow, fastbow;
 
     private Coroutine powerupcoroutine;
@@ -19,6 +20,7 @@ public class WeaponManager : MonoBehaviour
 
     void Start()
     {
+        bowsprite.sprite = emptybow;
         EquipArrow(normalability, normalbow);
     }
 
@@ -28,12 +30,12 @@ public class WeaponManager : MonoBehaviour
         bowsprite.sprite = bowArt;
         onWeaponChange.Invoke();
 
-     if (powerupcoroutine != null)
-                {
-                    StopCoroutine(powerupcoroutine);
-}
-powerupcoroutine = StartCoroutine(poweruptimer());
-            }
+        if (powerupcoroutine != null)
+        {
+            StopCoroutine(powerupcoroutine);
+        }
+        powerupcoroutine = StartCoroutine(poweruptimer());
+    }
 
             IEnumerator poweruptimer()
 

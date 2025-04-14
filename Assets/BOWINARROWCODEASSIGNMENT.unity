@@ -202,7 +202,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fabb81f311f83048ae23987b0ad3075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onPowerupcollected:
+    m_PersistentCalls:
+      m_Calls: []
   powerupRenderer: {fileID: 389182420}
+  isActivated: 0
 --- !u!212 &389182420 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 6978706160659448875, guid: 4266d0a253edbb54ea8d3fd874cfb993, type: 3}
@@ -260,9 +264,13 @@ MonoBehaviour:
   - {fileID: 389182419}
   - {fileID: 2039530824}
   - {fileID: 1361311090}
-  normalability: {fileID: 389182418}
-  doubleability: {fileID: 986286211}
-  fastability: {fileID: 2039530823}
+  abilityPrefabs:
+  - {fileID: 7594834438474438496, guid: 4266d0a253edbb54ea8d3fd874cfb993, type: 3}
+  - {fileID: 1192505500256563657, guid: e7d8b0a68a102264ba09f4732b2fb914, type: 3}
+  - {fileID: 9219423741521140301, guid: b0d739973c7ccf84e8e4539046cd4b6b, type: 3}
+  numberToSpawn: 10
+  spawnAreaMin: {x: -5, y: -3}
+  spawnAreaMax: {x: 5, y: 3}
 --- !u!212 &655728595
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -470,7 +478,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &951460019
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -574,6 +582,7 @@ MonoBehaviour:
   doubleability: {fileID: 1361311089}
   fastability: {fileID: 2039530823}
   bowsprite: {fileID: 655728595}
+  emptybow: {fileID: 0}
   normalbow: {fileID: 21300000, guid: f60d352905a5cc44abea05101ad685c0, type: 3}
   doublebow: {fileID: 21300000, guid: 4901cb152c097b0469637514a9791ff3, type: 3}
   fastbow: {fileID: 21300000, guid: 9318fa0fe12466644818c3bb9378ffb0, type: 3}
@@ -608,7 +617,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1013880858
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -840,7 +849,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fabb81f311f83048ae23987b0ad3075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onPowerupcollected:
+    m_PersistentCalls:
+      m_Calls: []
   powerupRenderer: {fileID: 1361311091}
+  isActivated: 0
 --- !u!212 &1361311091 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2277507340853136528, guid: b0d739973c7ccf84e8e4539046cd4b6b, type: 3}
@@ -939,7 +952,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fabb81f311f83048ae23987b0ad3075, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onPowerupcollected:
+    m_PersistentCalls:
+      m_Calls: []
   powerupRenderer: {fileID: 2039530825}
+  isActivated: 0
 --- !u!212 &2039530825 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2187636169258259002, guid: e7d8b0a68a102264ba09f4732b2fb914, type: 3}
@@ -973,7 +990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2076441380
 SpriteRenderer:
   m_ObjectHideFlags: 0

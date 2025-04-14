@@ -56,33 +56,34 @@ public class ArrowShooter : MonoBehaviour
             mouseWorld.z = 0f;
 
             //Vector3 closestPos = Vector3.zero;
-            float minDistance = 9999f;
-            int index = 0;
+            float minDistance = 10000;
+            //int index = 0;
             int closestindex = -1;
 
 
             
-            while (index < allpowerups.Length)
+            for (int i =0; i < allpowerups.Length; i ++)
             {
                 //Vector3 puPos = allpowerups[i].transform.localPosition;
                 // Vector3 bowPos = transform.localPosition;
                 // Vector3 puPos = allpowerups[i].transform.localPosition;
 
-                float distX = Mathf.Abs(mouseWorld.x - allpowerups[index].transform.localPosition.x);
-                float distY = Mathf.Abs(mouseWorld.y - allpowerups[index].transform.localPosition.y);
+                float distX = Mathf.Abs(mouseWorld.x - allpowerups[i].transform.localPosition.x);
+                float distY = Mathf.Abs(mouseWorld.y - allpowerups[i].transform.localPosition.y);
                 float dist = distX * distX + distY;
 
                 if (dist < minDistance)
                 {
                     minDistance = dist;
-                    closestindex = index;
+                    closestindex = i;
                 }
-                index++;
+                
             }
 
             if (closestindex != -1)
             {
                 selectedPowerup = allpowerups[closestindex];
+                Debug.Log("Selected Power-up: " + selectedPowerup.name);
                 selectedPowerup.CollectPowerUp(bowSpriterenderer, weaponmanagerscript, normalbow, doublebow, fastbow);
                 //    Sprite selected = allpowerups[closestIndex].powerupRenderer.sprite;
 
@@ -108,6 +109,7 @@ public class ArrowShooter : MonoBehaviour
             GameObject arrow = weaponmanagerscript.getcurrentarrow();
             if (arrow != null)
             {
+                    Debug.Log("F key pressed, firing arrow with selected power-up");
                     //Vector3 spawnPos = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
                     //Instantiate(arrow, firePoint.position, Quaternion.identity);
                     GameObject newArrow = Instantiate(arrow);
