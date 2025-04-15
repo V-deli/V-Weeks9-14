@@ -10,7 +10,7 @@ public class FastArrow : MonoBehaviour
     {
         if (moveRight)
         {
-            transform.localPosition += Vector3.right * 10f * Time.deltaTime;
+            transform.localPosition += Vector3.right * 10f * Time.deltaTime; //only really changed the time (and colour)
         }
     }
 

@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9339623, g: 0.47138664, b: 0.82765615, a: 1}
+  m_Color: {r: 0.73626983, g: 0.5322179, b: 0.9811321, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -738,7 +738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.73626983, g: 0.5322179, b: 0.9811321, a: 1}
+  m_Color: {r: 0.9339623, g: 0.47138664, b: 0.82765615, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -798,8 +798,8 @@ MonoBehaviour:
   bowSpriterenderer: {fileID: 655728595}
   abilitysprites: {fileID: 0}
   normalbow: {fileID: 21300000, guid: f60d352905a5cc44abea05101ad685c0, type: 3}
-  doublebow: {fileID: 21300000, guid: 4901cb152c097b0469637514a9791ff3, type: 3}
-  fastbow: {fileID: 21300000, guid: 9318fa0fe12466644818c3bb9378ffb0, type: 3}
+  doublebow: {fileID: 21300000, guid: 9318fa0fe12466644818c3bb9378ffb0, type: 3}
+  fastbow: {fileID: 21300000, guid: 4901cb152c097b0469637514a9791ff3, type: 3}
   bowsprite: {fileID: 0}
   allpowerupsgo:
   - {fileID: 389182418}
@@ -814,8 +814,6 @@ MonoBehaviour:
   - {fileID: 3842334669459659164}
   - {fileID: 5329123554931639482}
   - {fileID: 5478653645109205469}
-  spawnAreaMin: {x: -5, y: -3}
-  spawnAreaMax: {x: 5, y: 3}
 --- !u!212 &655728595
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1481,7 +1479,7 @@ PrefabInstance:
     - target: {fileID: 5743798812829583775, guid: b0d739973c7ccf84e8e4539046cd4b6b, type: 3}
       propertyPath: arrowPrefab
       value: 
-      objectReference: {fileID: 389182418}
+      objectReference: {fileID: 1361311089}
     - target: {fileID: 5891677634186806720, guid: b0d739973c7ccf84e8e4539046cd4b6b, type: 3}
       propertyPath: shooter
       value: 
@@ -1995,7 +1993,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.69, y: -3.83, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2010,7 +2008,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.31, y: -3.83, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2303,7 +2301,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.30999994, y: -3.83, z: 0}
-  m_LocalScale: {x: 6, y: 6, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2421,7 +2419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10e4e03cb8aeb1447aeb9585c51560f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  arrowPrefab: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArrowShooter : MonoBehaviour
 {
-    //1 unity event
+    //1 unity event= event trigger
     //2 listeners
     //remove listeners
     //1 coroutiene
@@ -40,8 +40,8 @@ public class ArrowShooter : MonoBehaviour
 
     public GameObject[] abilityPrefabs;
     //public int numberToSpawn = 10;
-    public Vector2 spawnAreaMin = new Vector2(-5f, -3f);
-    public Vector2 spawnAreaMax = new Vector2(5f, 3f);
+   // public Vector2 spawnAreaMin = new Vector2(-5f, -3f);
+   // public Vector2 spawnAreaMax = new Vector2(5f, 3f);
 
     void Start()
     {
@@ -144,7 +144,7 @@ public class ArrowShooter : MonoBehaviour
                 Debug.Log("F key pressed, firing arrow with selected power-up");
                 //  Vector3 spawnPos = new Vector3(transform.localPosition.x, transform.localPosition.y, 0); //test
                 //  Instantiate(arrow, firePoint.position, Quaternion.identity); //test
-                GameObject newArrow = Instantiate(arrow, firePoint.transform.position,Quaternion.identity);
+                GameObject newArrow = Instantiate(arrow, firePoint.transform.position,Quaternion.identity); //INSTANTIATES ARROWS NOT IN NORMAL AND FAST SCRIPT
 
                 if (newArrow.GetComponent<NormalArrow>() != null)
                 {
@@ -156,9 +156,13 @@ public class ArrowShooter : MonoBehaviour
                 }
                 else if (newArrow.GetComponent<DoubleArrow>() != null)
                 {
-                    newArrow.GetComponent<DoubleArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y, 0f));
+                    GameObject newArrow2 = Instantiate(arrow, firePoint.transform.position, Quaternion.identity);
+                    newArrow.GetComponent<DoubleArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y +0.5f, 0f));
+                    newArrow2.GetComponent<DoubleArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y - 0.5f, 0f));
+                    Destroy(newArrow2, 5); //working
                 }
                 Destroy(newArrow, 5); //working
+                
 
             }
         }
@@ -168,6 +172,7 @@ public class ArrowShooter : MonoBehaviour
     public void pinkarrow()
     {
         bowSpriterenderer.sprite = fastbow;
+        weaponmanagerscript.EquipArrow(abilityPrefabs[2], fastbow);
         Debug.Log("PINK WORKS");
 
     }
