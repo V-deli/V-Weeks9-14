@@ -41,7 +41,9 @@ public class WeaponManager : MonoBehaviour
         {
             StopCoroutine(powerupcoroutine); //stop corou
         }
+        powerupcoroutine = StartCoroutine(poweruptimer()); //TRIAL AND ERROR
         StartCoroutine(poweruptimer());
+        Debug.Log("coroustoped?");
     }
 
     IEnumerator poweruptimer()

@@ -40,8 +40,8 @@ public class ArrowShooter : MonoBehaviour
 
     public GameObject[] abilityPrefabs;
     //public int numberToSpawn = 10;
-   // public Vector2 spawnAreaMin = new Vector2(-5f, -3f);
-   // public Vector2 spawnAreaMax = new Vector2(5f, 3f);
+    // public Vector2 spawnAreaMin = new Vector2(-5f, -3f);
+    // public Vector2 spawnAreaMax = new Vector2(5f, 3f);
 
     void Start()
     {
@@ -57,15 +57,40 @@ public class ArrowShooter : MonoBehaviour
 
         //    allpowerupsgo[i] = Instantiate(prefabtospawn, spawnPos, Quaternion.identity); ///TEST IT OUT =g/o version
 
-            //int type = Random.Range(0, 3);
-            //if (type == 0) toSpawn = Instantiate(normalability);
-            //else if (type == 1) toSpawn = Instantiate(doubleability);
-            //else toSpawn = Instantiate(fastability);
+        //int type = Random.Range(0, 3);
+        //if (type == 0) toSpawn = Instantiate(normalability);
+        //else if (type == 1) toSpawn = Instantiate(doubleability);
+        //else toSpawn = Instantiate(fastability);
 
-            //toSpawn.transform.localPosition = new Vector3(Random.Range(-7f, 7f), Random.Range(-4f, 4f), 0);
+        //toSpawn.transform.localPosition = new Vector3(Random.Range(-7f, 7f), Random.Range(-4f, 4f), 0);
 
         //}
+        //for (int i = 0; i < allpowerups.Length; i++)
+        //{
+        //    weaponmanagerscript.onWeaponChange.AddListener();
+        //}
+
+
+        weaponmanagerscript.onWeaponChange.AddListener(updatedbowsprite);
+        weaponmanagerscript.onWeaponChange.AddListener(logchange);
+        StartCoroutine(removelistenerzafterdelay());
     }
+        void updatedbowsprite()
+        {
+            Debug.Log("Bow sprite updated!");
+        }
+
+        void logchange()
+        {
+            Debug.Log("Arrow equipped!");
+        }
+
+        IEnumerator removelistenerzafterdelay()
+        {
+            yield return new WaitForSeconds(5f);
+            weaponmanagerscript.onWeaponChange.RemoveListener(logchange);
+            Debug.Log("Removed listener: LogChange");
+        }
 
 
     void Update()
@@ -112,7 +137,7 @@ public class ArrowShooter : MonoBehaviour
             if (closestindex != -1) //commented out because it was assigned in order? 
             {
                 //  selectedPowerup = allpowerups[closestindex];
-                Debug.Log("MOUSE: " + selectedPowerup.name); //mouse 
+                //Debug.Log("MOUSE: " + selectedPowerup.name); //mouse 
                 selectedPowerup.CollectPowerUp(bowSpriterenderer, weaponmanagerscript, normalbow, doublebow, fastbow);
 
                 Sprite selected = allpowerups[closestindex].powerupRenderer.sprite;
@@ -173,7 +198,7 @@ public class ArrowShooter : MonoBehaviour
     {
         bowSpriterenderer.sprite = fastbow;
         weaponmanagerscript.EquipArrow(abilityPrefabs[2], fastbow);
-        Debug.Log("PINK WORKS");
+        Debug.Log("PURPLE WORKS");
 
     }
 
@@ -181,12 +206,13 @@ public class ArrowShooter : MonoBehaviour
     {
         bowSpriterenderer.sprite = doublebow;
         weaponmanagerscript.EquipArrow(abilityPrefabs[1], doublebow);
-        Debug.Log("PURPLE WORKS");
+        Debug.Log("PINK WORKS");
 
     }
     public void bluearrow()
     {
         bowSpriterenderer.sprite = normalbow;
+        weaponmanagerscript.EquipArrow(abilityPrefabs[0], normalbow); 
         Debug.Log("BLUE WORKS");
 
     }
