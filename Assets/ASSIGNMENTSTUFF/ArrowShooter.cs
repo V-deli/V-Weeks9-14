@@ -31,6 +31,7 @@ public class ArrowShooter : MonoBehaviour
     public Sprite normalbow;
     public Sprite doublebow;
     public Sprite fastbow;
+    public Sprite bowsprite;
 
     public GameObject[] allpowerupsgo; //test OP2 go=g/o
     public Powerup[] allpowerups; //test OP1
@@ -38,22 +39,23 @@ public class ArrowShooter : MonoBehaviour
     public Powerup selectedPowerup; //script
 
     public GameObject[] abilityPrefabs;
-    public int numberToSpawn = 10;
+    //public int numberToSpawn = 10;
     public Vector2 spawnAreaMin = new Vector2(-5f, -3f);
     public Vector2 spawnAreaMax = new Vector2(5f, 3f);
 
     void Start()
     {
-        allpowerups = new Powerup [numberToSpawn]; //swictched to g/o to try, now switching it back
-        
-        for (int i = 0; i < numberToSpawn; i++)
-        {
-            GameObject prefabtospawn = abilityPrefabs[Random.Range(0, abilityPrefabs.Length)];
+        //THIS WAS TO SPAWN 10 RANDOM ARROW POWER UPS IN THE BEGINNING- NOT DOING THIS ANYMORE AS IM FOCUSING ON DEBUGGING THE REQUIRED ELEMENTS FOR THIS PROJECT 
+        ////allpowerups = new Powerup[numberToSpawn]; //swictched to g/o to try, now switching it back
 
-            Vector3 spawnPos = new Vector3(Random.Range(spawnAreaMin.x, spawnAreaMax.x),
-            Random.Range(spawnAreaMin.y, spawnAreaMax.y), 0f);
+        ////for (int i = 0; i < numberToSpawn; i++)
+        //{
+        //    GameObject prefabtospawn = abilityPrefabs[Random.Range(0, abilityPrefabs.Length)];
 
-            allpowerupsgo[i] = Instantiate(prefabtospawn, spawnPos, Quaternion.identity); ///TEST IT OUT =g/o version
+        //    Vector3 spawnPos = new Vector3(Random.Range(spawnAreaMin.x, spawnAreaMax.x),
+        //    Random.Range(spawnAreaMin.y, spawnAreaMax.y), 0f);
+
+        //    allpowerupsgo[i] = Instantiate(prefabtospawn, spawnPos, Quaternion.identity); ///TEST IT OUT =g/o version
 
             //int type = Random.Range(0, 3);
             //if (type == 0) toSpawn = Instantiate(normalability);
@@ -62,7 +64,7 @@ public class ArrowShooter : MonoBehaviour
 
             //toSpawn.transform.localPosition = new Vector3(Random.Range(-7f, 7f), Random.Range(-4f, 4f), 0);
 
-        }
+        //}
     }
 
 
@@ -96,7 +98,7 @@ public class ArrowShooter : MonoBehaviour
 
                 float distX = Mathf.Abs(mouseWorld.x - allpowerups[i].transform.localPosition.x);
                 float distY = Mathf.Abs(mouseWorld.y - allpowerups[i].transform.localPosition.y);
-                float dist  = distX + distY;
+                float dist = distX + distY;
                 //Debug.Log("testing mouse");
 
                 if (dist < minDistance)
@@ -109,7 +111,7 @@ public class ArrowShooter : MonoBehaviour
 
             if (closestindex != -1) //commented out because it was assigned in order? 
             {
-              //  selectedPowerup = allpowerups[closestindex];
+                //  selectedPowerup = allpowerups[closestindex];
                 Debug.Log("MOUSE: " + selectedPowerup.name); //mouse 
                 selectedPowerup.CollectPowerUp(bowSpriterenderer, weaponmanagerscript, normalbow, doublebow, fastbow);
 
@@ -117,15 +119,15 @@ public class ArrowShooter : MonoBehaviour
 
                 if (selected == normalbow)
                 {
-                    weaponmanagerscript.EquipArrow(abilityPrefabs[0], normalbow);
+                    weaponmanagerscript.EquipArrow(abilityPrefabs[0], normalbow); //blue is 0
                 }
                 else if (selected == doublebow)
                 {
-                    weaponmanagerscript.EquipArrow(abilityPrefabs[1], doublebow);
+                    weaponmanagerscript.EquipArrow(abilityPrefabs[1], doublebow); //purp 1
                 }
                 else if (selected == fastbow)
                 {
-                    weaponmanagerscript.EquipArrow(abilityPrefabs[2], fastbow);
+                    weaponmanagerscript.EquipArrow(abilityPrefabs[2], fastbow); // pink 2
                 }
                 allpowerups[closestindex].transform.localPosition = new Vector3(1000, 1000, 0);
             }
@@ -139,28 +141,48 @@ public class ArrowShooter : MonoBehaviour
             GameObject arrow = weaponmanagerscript.getcurrentarrow();
             if (arrow != null)
             {
-                    Debug.Log("F key pressed, firing arrow with selected power-up");
-                  //  Vector3 spawnPos = new Vector3(transform.localPosition.x, transform.localPosition.y, 0); //test
-                  //  Instantiate(arrow, firePoint.position, Quaternion.identity); //test
-                    GameObject newArrow = Instantiate(arrow);
+                Debug.Log("F key pressed, firing arrow with selected power-up");
+                //  Vector3 spawnPos = new Vector3(transform.localPosition.x, transform.localPosition.y, 0); //test
+                //  Instantiate(arrow, firePoint.position, Quaternion.identity); //test
+                GameObject newArrow = Instantiate(arrow, firePoint.transform.position,Quaternion.identity);
 
-                    if (newArrow.GetComponent<NormalArrow>() != null)
-                    {
-                        newArrow.GetComponent<NormalArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y, 0f));
-                    }
-                    else if (newArrow.GetComponent<FastArrow>() != null)
-                    {
-                        newArrow.GetComponent<FastArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y, 0f));
-                    }
-                    else if (newArrow.GetComponent<DoubleArrow>() != null)
-                    {
-                        newArrow.GetComponent<DoubleArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y, 0f));
-                    }
+                if (newArrow.GetComponent<NormalArrow>() != null)
+                {
+                    newArrow.GetComponent<NormalArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y, 0f));
+                }
+                else if (newArrow.GetComponent<FastArrow>() != null)
+                {
+                    newArrow.GetComponent<FastArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y, 0f));
+                }
+                else if (newArrow.GetComponent<DoubleArrow>() != null)
+                {
+                    newArrow.GetComponent<DoubleArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y, 0f));
+                }
                 Destroy(newArrow, 5); //working
 
-                }
             }
-        
+        }
+
+
+    }
+    public void pinkarrow()
+    {
+        bowSpriterenderer.sprite = fastbow;
+        Debug.Log("PINK WORKS");
+
+    }
+
+    public void purplearrow()
+    {
+        bowSpriterenderer.sprite = doublebow;
+        weaponmanagerscript.EquipArrow(abilityPrefabs[1], doublebow);
+        Debug.Log("PURPLE WORKS");
+
+    }
+    public void bluearrow()
+    {
+        bowSpriterenderer.sprite = normalbow;
+        Debug.Log("BLUE WORKS");
 
     }
 }

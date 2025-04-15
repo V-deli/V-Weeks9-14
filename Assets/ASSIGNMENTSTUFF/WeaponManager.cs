@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class WeaponManager : MonoBehaviour
 {
-    public UnityEvent onWeaponChange;
-    public GameObject normalability; //= pick ups
+    public UnityEvent onWeaponChange; //UNITY EVENT
+    public GameObject normalability;
     public GameObject doubleability;
     public GameObject fastability;
     public SpriteRenderer bowsprite;
@@ -19,6 +19,11 @@ public class WeaponManager : MonoBehaviour
     public GameObject arrowprefab;
     public Sprite bowArt;
 
+    public GameObject normalabilitybutton; //blue
+    public GameObject doubleabilitybutton; //purp
+    public GameObject fastabilitybuton; //pink
+
+
     void Start()
     {
         bowsprite.sprite = emptybow;
@@ -30,7 +35,7 @@ public class WeaponManager : MonoBehaviour
     {
         currentarrowprefab = arrowprefab;
         bowsprite.sprite = bowArt;
-        onWeaponChange.Invoke();
+        onWeaponChange.Invoke(); //unity event
 
         if (powerupcoroutine != null)
         {
@@ -60,5 +65,11 @@ public class WeaponManager : MonoBehaviour
             StopCoroutine(powerupcoroutine);
             EquipArrow(normalability, normalbow);
         }
+    }
+    public void pinkpowerbutton()
+    {
+
+        EquipArrow(fastability, fastbow);
+
     }
 }
