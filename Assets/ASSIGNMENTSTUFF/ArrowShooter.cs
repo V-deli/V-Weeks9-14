@@ -10,86 +10,59 @@ public class ArrowShooter : MonoBehaviour
     //1 coroutiene
 
     //Task:
-    //3 arrow buttons; when mouse clicked, change the bow sprite to that colour, and F key- will shoot that colour's ability. end state: once score is at 10=winner, resets score after 3 seconds.
-    //I was over scoping ^^ this is more reasonable 
+    //3 arrow buttons; when mouse clicked, change the bow sprite to that colour, and F key- will shoot that colour's ability. end state: once score is at 30=winner, resets score after _ seconds.
+    //I was over scoping before ^^ this is more reasonable 
 
-    // solution= sprtie buttons? 
+    // solution= sprtie buttons? =yes did this worked too!
 
     //Implementation log: Mouse pressed, not lining up with bow sprtie change when power-up clicked, 
     //when mouse pressed =not changing abilities
     //f shoot working = not specific power up 
     // spawning 10 at random working, prefabs are hard 
     //spawning ability SPRITES, shooting arrow PREFABS
-    //keeping shooting arrows as prefabs
+    //gonna make it keep shooting arrows as prefabs
 
 
-    public WeaponManager weaponmanagerscript;
-    public Transform firePoint;
-    public SpriteRenderer bowSpriterenderer;
-    public SpriteRenderer abilitysprites;
+    public WeaponManager weaponmanagerscript; //ref. the weapon script to access it
+    public Transform firePoint; //ref. the point the arrows will fire from 
+    public SpriteRenderer bowSpriterenderer; //ref. SR bow
+    public SpriteRenderer abilitysprites; //sprites of arrows (not bows)
 
-    public Sprite normalbow;
-    public Sprite doublebow;
-    public Sprite fastbow;
-    public Sprite bowsprite;
+    public Sprite normalbow; //normal bow sprite = blue arrow
+    public Sprite doublebow; //double bow sprite =purple arrow
+    public Sprite fastbow; //fast bow sprite = pink arrow
+    
+    //Before I was alternating between changing the powerup to gameobject and vice versa, only worked when I kept both
+    public Powerup[] allpowerups; //test OP1 , power up script array = for all the power ups
 
-    public GameObject[] allpowerupsgo; //test OP2 go=g/o
-    public Powerup[] allpowerups; //test OP1
+    public Powerup selectedPowerup; //script , the power up thats selected in game
 
-    public Powerup selectedPowerup; //script
-
-    public GameObject[] abilityPrefabs;
-    //public int numberToSpawn = 10;
-    // public Vector2 spawnAreaMin = new Vector2(-5f, -3f);
-    // public Vector2 spawnAreaMax = new Vector2(5f, 3f);
+    public GameObject[] abilityPrefabs; //array of prefabs for different types of shooting arrows = the 3 of them
+    
 
     void Start()
     {
-        //THIS WAS TO SPAWN 10 RANDOM ARROW POWER UPS IN THE BEGINNING- NOT DOING THIS ANYMORE AS IM FOCUSING ON DEBUGGING THE REQUIRED ELEMENTS FOR THIS PROJECT 
-        ////allpowerups = new Powerup[numberToSpawn]; //swictched to g/o to try, now switching it back
-
-        ////for (int i = 0; i < numberToSpawn; i++)
-        //{
-        //    GameObject prefabtospawn = abilityPrefabs[Random.Range(0, abilityPrefabs.Length)];
-
-        //    Vector3 spawnPos = new Vector3(Random.Range(spawnAreaMin.x, spawnAreaMax.x),
-        //    Random.Range(spawnAreaMin.y, spawnAreaMax.y), 0f);
-
-        //    allpowerupsgo[i] = Instantiate(prefabtospawn, spawnPos, Quaternion.identity); ///TEST IT OUT =g/o version
-
-        //int type = Random.Range(0, 3);
-        //if (type == 0) toSpawn = Instantiate(normalability);
-        //else if (type == 1) toSpawn = Instantiate(doubleability);
-        //else toSpawn = Instantiate(fastability);
-
-        //toSpawn.transform.localPosition = new Vector3(Random.Range(-7f, 7f), Random.Range(-4f, 4f), 0);
-
-        //}
-        //for (int i = 0; i < allpowerups.Length; i++)
-        //{
-        //    weaponmanagerscript.onWeaponChange.AddListener();
-        //}
-
-
-        weaponmanagerscript.onWeaponChange.AddListener(updatedbowsprite);
-        weaponmanagerscript.onWeaponChange.AddListener(logchange);
-        StartCoroutine(removelistenerzafterdelay());
+        //I HAD CODE HERE THAT WAS TO SPAWN 10 RANDOM ARROW POWER UPS IN THE BEGINNING- NOT DOING THIS ANYMORE AS IM FOCUSING ON DEBUGGING THE REQUIRED ELEMENTS FOR THIS PROJECT 
+        
+        weaponmanagerscript.onWeaponChange.AddListener(updatedbowsprite); //added listener to weapon managers script event
+        weaponmanagerscript.onWeaponChange.AddListener(logchange); //added listener to log changes in weapon
+        StartCoroutine(removelistenerzafterdelay()); //  start a coroutine to remove the listeners after a delay
     }
-        void updatedbowsprite()
+        void updatedbowsprite() // ref. above in start
         {
-            Debug.Log("Bow sprite updated!");
+            Debug.Log("Bow sprite updated!"); //to tell me it works when bow sprite is updated, though I never see this message
         }
 
-        void logchange()
+        void logchange() //ref. above in start
         {
-            Debug.Log("Arrow equipped!");
+            Debug.Log("Arrow equipped!"); //also have never seen this message
         }
 
-        IEnumerator removelistenerzafterdelay()
+        IEnumerator removelistenerzafterdelay() //last one ref. above in start
         {
-            yield return new WaitForSeconds(5f);
-            weaponmanagerscript.onWeaponChange.RemoveListener(logchange);
-            Debug.Log("Removed listener: LogChange");
+            yield return new WaitForSeconds(5f); //waits for 5 seconds
+            weaponmanagerscript.onWeaponChange.RemoveListener(logchange); //after waiting remover listener
+            Debug.Log("Removed listener: LogChange"); //logs the removal of listener
         }
 
 
@@ -97,123 +70,112 @@ public class ArrowShooter : MonoBehaviour
     {
         //BOW
         //------------------------------------
-        //float moveX = Input.GetAxisRaw("Horizontal"); //dont want bow like that
-        float moveY = Input.GetAxisRaw("Vertical");
-
+        
+        float moveY = Input.GetAxisRaw("Vertical"); 
+        //moves my player bow sprite up and down only (intentional)
         transform.localPosition += new Vector3(0, moveY, 0f) * Time.deltaTime * 5f;
+
         //------------------------------------
-        //MOUSE
-        if (Input.GetMouseButtonDown(0))
+        //MOUSE--- Keeping cuz I tried to comment it out cuz I have buttons now but it all went downhill without this clump of code
+        if (Input.GetMouseButtonDown(0)) //before the buttons I had sprites to click on, this checks if the L mouse is pressed
         {
-            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mouseWorld.z = 0f;
+            Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition); //world position of the mouse/cursor thing
+            mouseWorld.z = 0f; //dont need z
 
-            //Vector3 closestPos = Vector3.zero;
-            float minDistance = 10000;
-            //int index = 0;
-            int closestindex = -1;
+            float minDistance = 10000; //made this as a safety procaution
+            int closestindex = -1; 
+            //had this to update the closest sprite when theyd spawn before I changed that part
+            //before: unity needed to know where the arrow powerups were spawned, needed to make sure the one that was clicked on was the arrow being used when f-key would be pressed =fire
 
-
-
-            for (int i = 0; i < allpowerups.Length; i++)
+            for (int i = 0; i < allpowerups.Length; i++) //for loop-s through powerups
             {
-                //Vector3 puPos = allpowerups[i].transform.localPosition;
-                // Vector3 bowPos = transform.localPosition;
-                // Vector3 puPos = allpowerups[i].transform.localPosition;
+                float distX = Mathf.Abs(mouseWorld.x - allpowerups[i].transform.localPosition.x); //distance x axis
+                float distY = Mathf.Abs(mouseWorld.y - allpowerups[i].transform.localPosition.y); //distance y axis
+                float dist = distX + distY; //total distance
+                
 
-                float distX = Mathf.Abs(mouseWorld.x - allpowerups[i].transform.localPosition.x);
-                float distY = Mathf.Abs(mouseWorld.y - allpowerups[i].transform.localPosition.y);
-                float dist = distX + distY;
-                //Debug.Log("testing mouse");
-
-                if (dist < minDistance)
+                if (dist < minDistance) //another safety thing I made: if this power up is closer than the previous one
                 {
-                    minDistance = dist;
-                    closestindex = i;
+                    minDistance = dist; //then update the min dist
+                    closestindex = i; //and the index of whats closest
                 }
 
             }
 
-            if (closestindex != -1) //commented out because it was assigned in order? 
+            if (closestindex != -1) //commented out originally because i thought it was assigned in order on the inspector and that was why it was clicking in a predetermined order=BUT I managed to make it work by making 3 voids at the very bottom
             {
-                //  selectedPowerup = allpowerups[closestindex];
-                //Debug.Log("MOUSE: " + selectedPowerup.name); //mouse 
-                selectedPowerup.CollectPowerUp(bowSpriterenderer, weaponmanagerscript, normalbow, doublebow, fastbow);
-
-                Sprite selected = allpowerups[closestindex].powerupRenderer.sprite;
-
-                if (selected == normalbow)
+                selectedPowerup.CollectPowerUp(bowSpriterenderer, weaponmanagerscript, normalbow, doublebow, fastbow); //collect the power up
+                Sprite selected = allpowerups[closestindex].powerupRenderer.sprite; //get the sprite of the selected powerup
+                //BELOW: Im essentially linking the bow sprites to that of the arrow...
+                //this makes the correct bow sprite activate, doing it further by the voids down below and recalling lines of code to make sure its good and gets done
+                if (selected == normalbow) 
                 {
-                    weaponmanagerscript.EquipArrow(abilityPrefabs[0], normalbow); //blue is 0
+                    weaponmanagerscript.EquipArrow(abilityPrefabs[0], normalbow); //normal bow = blue is 0
                 }
                 else if (selected == doublebow)
                 {
-                    weaponmanagerscript.EquipArrow(abilityPrefabs[1], doublebow); //purp 1
+                    weaponmanagerscript.EquipArrow(abilityPrefabs[1], doublebow); //double bow = purp 1
                 }
                 else if (selected == fastbow)
                 {
-                    weaponmanagerscript.EquipArrow(abilityPrefabs[2], fastbow); // pink 2
+                    weaponmanagerscript.EquipArrow(abilityPrefabs[2], fastbow); // fast bow = pink 2
                 }
-                allpowerups[closestindex].transform.localPosition = new Vector3(1000, 1000, 0);
+                allpowerups[closestindex].transform.localPosition = new Vector3(1000, 1000, 0); //move out of view
             }
         }
         //-----------------------
-        //FFFFFF
-        // if (Input.GetKeyDown(KeyCode.F) //&& selectedPowerup != null ) && selectedPowerup.isActivated) //test
-        // if (Input.GetKeyDown(KeyCode.F) && selectedPowerup.isActivated) //test
-        if (Input.GetKeyDown(KeyCode.F))
+        //FFFFFF KEY PRESSED
+
+        if (Input.GetKeyDown(KeyCode.F)) //so if a f key is pressed, arrows will shoot, other scripts ref this and the way they shoot change depending on the colour/ability/arrowtype
         {
-            GameObject arrow = weaponmanagerscript.getcurrentarrow();
-            if (arrow != null)
+            GameObject arrow = weaponmanagerscript.getcurrentarrow(); //get thecureent arrow prefab, the same type clicked on
+            if (arrow != null) //if arrow not nul then: do the following
             {
-                Debug.Log("F key pressed, firing arrow with selected power-up");
-                //  Vector3 spawnPos = new Vector3(transform.localPosition.x, transform.localPosition.y, 0); //test
-                //  Instantiate(arrow, firePoint.position, Quaternion.identity); //test
-                GameObject newArrow = Instantiate(arrow, firePoint.transform.position,Quaternion.identity); //INSTANTIATES ARROWS NOT IN NORMAL AND FAST SCRIPT
+                Debug.Log("F key pressed, firing arrow with selected power-up"); //making sure it works and this part does yipee
+                GameObject newArrow = Instantiate(arrow, firePoint.transform.position,Quaternion.identity); //INSTANTIATES ARROWS HERE, NOT IN NORMAL AND FAST SCRIPT- at the fire point
 
                 if (newArrow.GetComponent<NormalArrow>() != null)
                 {
-                    newArrow.GetComponent<NormalArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y, 0f));
+                    newArrow.GetComponent<NormalArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y, 0f)); //if normal, activate normal to shoot
                 }
                 else if (newArrow.GetComponent<FastArrow>() != null)
                 {
-                    newArrow.GetComponent<FastArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y, 0f));
+                    newArrow.GetComponent<FastArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y, 0f)); //if fast arrow, activate fast to shoot
                 }
                 else if (newArrow.GetComponent<DoubleArrow>() != null)
                 {
-                    GameObject newArrow2 = Instantiate(arrow, firePoint.transform.position, Quaternion.identity);
-                    newArrow.GetComponent<DoubleArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y +0.5f, 0f));
-                    newArrow2.GetComponent<DoubleArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y - 0.5f, 0f));
-                    Destroy(newArrow2, 5); //working
+                    GameObject newArrow2 = Instantiate(arrow, firePoint.transform.position, Quaternion.identity); //instantiate another 2nd arrow for double arrow since the other 1 of the double arrow is already instantiated
+                    newArrow.GetComponent<DoubleArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y +0.5f, 0f)); //got 2 lines for double arrows one on top, one on bottom
+                    newArrow2.GetComponent<DoubleArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y - 0.5f, 0f)); //this the bottom one=code the same except for -0.5
+                    Destroy(newArrow2, 5); //working ---destroy specifally bottom double arrow g/0 after 5 seconds
                 }
-                Destroy(newArrow, 5); //working
-                
-
+                Destroy(newArrow, 5); //working  ----this destory works for all the others outside the else if statement, after 5
             }
         }
 
 
     }
+    //BEST DECISION
     public void pinkarrow()
     {
-        bowSpriterenderer.sprite = fastbow;
-        weaponmanagerscript.EquipArrow(abilityPrefabs[2], fastbow);
-        Debug.Log("PURPLE WORKS");
+        bowSpriterenderer.sprite = fastbow; //sets sprite equal to fastbow sprite
+        weaponmanagerscript.EquipArrow(abilityPrefabs[2], fastbow); //fast arrow prefab from weapon manager script
+        Debug.Log("PURPLE WORKS"); //this helped and seems to work too
 
     }
 
     public void purplearrow()
     {
-        bowSpriterenderer.sprite = doublebow;
-        weaponmanagerscript.EquipArrow(abilityPrefabs[1], doublebow);
-        Debug.Log("PINK WORKS");
+        bowSpriterenderer.sprite = doublebow; //SR.sprite = double type sprite
+        weaponmanagerscript.EquipArrow(abilityPrefabs[1], doublebow); //gettingp prefab from script
+        Debug.Log("PINK WORKS"); //works
 
     }
     public void bluearrow()
     {
-        bowSpriterenderer.sprite = normalbow;
-        weaponmanagerscript.EquipArrow(abilityPrefabs[0], normalbow); 
-        Debug.Log("BLUE WORKS");
+        bowSpriterenderer.sprite = normalbow; //SR.sprite = normal type sprite
+        weaponmanagerscript.EquipArrow(abilityPrefabs[0], normalbow); //gettingp arrow prefab from script
+        Debug.Log("BLUE WORKS"); //works
 
     }
 }
