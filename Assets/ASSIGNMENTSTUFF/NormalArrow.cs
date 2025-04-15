@@ -10,7 +10,7 @@ public class NormalArrow : MonoBehaviour
     {
         if (moveRight)
         {
-            transform.localPosition += Vector3.right * 3f * Time.deltaTime;
+            transform.localPosition += Vector3.right * 3f * Time.deltaTime; //just moves 2 r
         }
     }
 

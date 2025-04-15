@@ -26,20 +26,21 @@ public class tagetboundry : MonoBehaviour
     void Update()
     {
         //if an arrow shoot in the target sprite width, then point score, if not, no point score.
+
         //ctrl k + D to format
 
-        for (int i = 0; i < shooter.allpowerups.Length; i++)
-        {
-            Vector2 arrow = shooter.allpowerups[i].transform.position;
-            if (arrow.y > ydown && arrow.y < yup && arrow.x > xleft)
-            {
-                score += 1;
-                screenscore.text = score.ToString();
-                Debug.Log(score);
-            }
-        }
+        //for (int i = 0; i < shooter.allpowerups.Length; i++)
+        //{
+        //    Vector2 arrow = shooter.allpowerups[i].transform.position;
+        //    if (arrow.y > ydown && arrow.y < yup && arrow.x > xleft)
+        //    {
+        //        score += 1;
+        //        screenscore.text = score.ToString();
+        //        Debug.Log(score);
+        //    }
+        //}
 
-        
+
     }
 }
 

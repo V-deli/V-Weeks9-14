@@ -9,7 +9,7 @@ public class Powerup : MonoBehaviour
     public SpriteRenderer powerupRenderer;
     public bool isActivated = false;
     public ArrowShooter shooter; //script
-    public WeaponManager weaponManager;
+    public WeaponManager weaponManager; //script
 
      void Start()
     {
@@ -42,7 +42,8 @@ public class Powerup : MonoBehaviour
     }
     public void correctpowerup () //new add listener reference other void
     {
-        //onPowerupcollected.AddListener(weaponManager.EquipArrow());
+        //onPowerupcollected.AddListener(weaponManager.EquipArrow()); // ATTEMPT 1
+        //onPowerupcollected.AddListener(() => weaponManager.EquipArrow(arrowPrefab, arrowSprite));// ATTEMPT 2
     }
 
 

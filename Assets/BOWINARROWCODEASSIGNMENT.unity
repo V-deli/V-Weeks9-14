@@ -418,6 +418,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: normalarrow
       objectReference: {fileID: 0}
+    - target: {fileID: 7594834438474438496, guid: 4266d0a253edbb54ea8d3fd874cfb993, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8648874564575545877, guid: 4266d0a253edbb54ea8d3fd874cfb993, type: 3}
+      propertyPath: shooter
+      value: 
+      objectReference: {fileID: 655728594}
+    - target: {fileID: 8648874564575545877, guid: 4266d0a253edbb54ea8d3fd874cfb993, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8648874564575545877, guid: 4266d0a253edbb54ea8d3fd874cfb993, type: 3}
+      propertyPath: weaponManager
+      value: 
+      objectReference: {fileID: 986286212}
     - target: {fileID: 8648874564575545877, guid: 4266d0a253edbb54ea8d3fd874cfb993, type: 3}
       propertyPath: onPowerupcollected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -469,10 +485,15 @@ MonoBehaviour:
   normalbow: {fileID: 21300000, guid: f60d352905a5cc44abea05101ad685c0, type: 3}
   doublebow: {fileID: 21300000, guid: 4901cb152c097b0469637514a9791ff3, type: 3}
   fastbow: {fileID: 21300000, guid: 9318fa0fe12466644818c3bb9378ffb0, type: 3}
+  allpowerupsgo:
+  - {fileID: 389182418}
+  - {fileID: 2039530823}
+  - {fileID: 1361311089}
   allpowerups:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 389182418}
+  - {fileID: 2039530823}
+  - {fileID: 1361311089}
+  selectedPowerup: {fileID: 0}
   abilityPrefabs:
   - {fileID: 3842334669459659164}
   - {fileID: 5329123554931639482}
@@ -729,7 +750,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 56fdd3abaf3936840bdc13dff2d8aac1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1132,12 +1153,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 389182418}
     - target: {fileID: 5891677634186806720, guid: b0d739973c7ccf84e8e4539046cd4b6b, type: 3}
+      propertyPath: shooter
+      value: 
+      objectReference: {fileID: 655728594}
+    - target: {fileID: 5891677634186806720, guid: b0d739973c7ccf84e8e4539046cd4b6b, type: 3}
+      propertyPath: weaponManager
+      value: 
+      objectReference: {fileID: 986286212}
+    - target: {fileID: 5891677634186806720, guid: b0d739973c7ccf84e8e4539046cd4b6b, type: 3}
       propertyPath: onPowerupcollected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 655728595}
     - target: {fileID: 9219423741521140301, guid: b0d739973c7ccf84e8e4539046cd4b6b, type: 3}
       propertyPath: m_Name
       value: doublearrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 9219423741521140301, guid: b0d739973c7ccf84e8e4539046cd4b6b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1229,6 +1262,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: fastarrow
       objectReference: {fileID: 0}
+    - target: {fileID: 1192505500256563657, guid: e7d8b0a68a102264ba09f4732b2fb914, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3222505457950021470, guid: e7d8b0a68a102264ba09f4732b2fb914, type: 3}
+      propertyPath: shooter
+      value: 
+      objectReference: {fileID: 655728594}
+    - target: {fileID: 3222505457950021470, guid: e7d8b0a68a102264ba09f4732b2fb914, type: 3}
+      propertyPath: weaponManager
+      value: 
+      objectReference: {fileID: 986286212}
     - target: {fileID: 3222505457950021470, guid: e7d8b0a68a102264ba09f4732b2fb914, type: 3}
       propertyPath: onPowerupcollected.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1417,8 +1462,8 @@ Transform:
   m_GameObject: {fileID: 3842334669459659164}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalPosition: {x: -1.69, y: -3.83, z: 0}
+  m_LocalScale: {x: 6, y: 6, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1432,8 +1477,8 @@ Transform:
   m_GameObject: {fileID: 5478653645109205469}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalPosition: {x: 2.31, y: -3.83, z: 0}
+  m_LocalScale: {x: 6, y: 6, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1467,8 +1512,8 @@ MonoBehaviour:
         m_CallState: 2
   powerupRenderer: {fileID: 4390353158342986455}
   isActivated: 0
-  shooter: {fileID: 0}
-  weaponManager: {fileID: 0}
+  shooter: {fileID: 655728594}
+  weaponManager: {fileID: 986286212}
 --- !u!212 &3198324986891521792
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1698,7 +1743,7 @@ MonoBehaviour:
   onPowerupcollected:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5478653645109205469}
         m_TargetAssemblyTypeName: UnityEngine.SpriteRenderer, UnityEngine
         m_MethodName: set_sprite
         m_Mode: 2
@@ -1712,8 +1757,8 @@ MonoBehaviour:
         m_CallState: 2
   powerupRenderer: {fileID: 3198324986891521792}
   isActivated: 0
-  shooter: {fileID: 0}
-  weaponManager: {fileID: 0}
+  shooter: {fileID: 655728594}
+  weaponManager: {fileID: 986286212}
 --- !u!4 &7374441330795986225
 Transform:
   m_ObjectHideFlags: 0
@@ -1723,8 +1768,8 @@ Transform:
   m_GameObject: {fileID: 5329123554931639482}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalPosition: {x: 0.30999994, y: -3.83, z: 0}
+  m_LocalScale: {x: 6, y: 6, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1744,7 +1789,7 @@ MonoBehaviour:
   onPowerupcollected:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 5329123554931639482}
         m_TargetAssemblyTypeName: UnityEngine.SpriteRenderer, UnityEngine
         m_MethodName: set_sprite
         m_Mode: 2
@@ -1758,8 +1803,8 @@ MonoBehaviour:
         m_CallState: 2
   powerupRenderer: {fileID: 5126349050786654025}
   isActivated: 0
-  shooter: {fileID: 0}
-  weaponManager: {fileID: 0}
+  shooter: {fileID: 655728594}
+  weaponManager: {fileID: 986286212}
 --- !u!114 &8578699339487088787
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,24 @@ using UnityEngine;
 
 public class ArrowShooter : MonoBehaviour
 {
+    //1 unity event
+    //2 listeners
+    //remove listeners
+    //1 coroutiene
+
+    //Task:
+    //3 arrow buttons; when mouse clicked, change the bow sprite to that colour, and F key- will shoot that colour's ability. end state: once score is at 10=winner, resets score after 3 seconds.
+    //I was over scoping ^^ this is more reasonable 
+
+    // solution= sprtie buttons? 
+
+    //Implementation log: Mouse pressed, not lining up with bow sprtie change when power-up clicked, 
+    //when mouse pressed =not changing abilities
+    //f shoot working = not specific power up 
+    // spawning 10 at random working, prefabs are hard 
+    //spawning ability SPRITES, shooting arrow PREFABS
+    //keeping shooting arrows as prefabs
+
 
     public WeaponManager weaponmanagerscript;
     public Transform firePoint;
@@ -13,9 +31,11 @@ public class ArrowShooter : MonoBehaviour
     public Sprite normalbow;
     public Sprite doublebow;
     public Sprite fastbow;
-    public GameObject[] allpowerups;
-    //public Powerup[] allpowerups;
-    private Powerup selectedPowerup;
+
+    public GameObject[] allpowerupsgo; //test OP2 go=g/o
+    public Powerup[] allpowerups; //test OP1
+
+    public Powerup selectedPowerup; //script
 
     public GameObject[] abilityPrefabs;
     public int numberToSpawn = 10;
@@ -24,7 +44,7 @@ public class ArrowShooter : MonoBehaviour
 
     void Start()
     {
-        allpowerups = new GameObject[numberToSpawn];
+        allpowerups = new Powerup [numberToSpawn]; //swictched to g/o to try, now switching it back
         
         for (int i = 0; i < numberToSpawn; i++)
         {
@@ -33,22 +53,24 @@ public class ArrowShooter : MonoBehaviour
             Vector3 spawnPos = new Vector3(Random.Range(spawnAreaMin.x, spawnAreaMax.x),
             Random.Range(spawnAreaMin.y, spawnAreaMax.y), 0f);
 
-            allpowerups[i] = Instantiate(prefabtospawn, spawnPos, Quaternion.identity);
+            allpowerupsgo[i] = Instantiate(prefabtospawn, spawnPos, Quaternion.identity); ///TEST IT OUT =g/o version
 
-            //        int type = Random.Range(0, 3);
-            //        if (type == 0) toSpawn = Instantiate(normalability);
-            //        else if (type == 1) toSpawn = Instantiate(doubleability);
-            //        else toSpawn = Instantiate(fastability);
+            //int type = Random.Range(0, 3);
+            //if (type == 0) toSpawn = Instantiate(normalability);
+            //else if (type == 1) toSpawn = Instantiate(doubleability);
+            //else toSpawn = Instantiate(fastability);
 
-            //        toSpawn.transform.localPosition = new Vector3(Random.Range(-7f, 7f), Random.Range(-4f, 4f), 0);
-            
+            //toSpawn.transform.localPosition = new Vector3(Random.Range(-7f, 7f), Random.Range(-4f, 4f), 0);
+
         }
     }
 
 
     void Update()
     {
-        //float moveX = Input.GetAxisRaw("Horizontal");
+        //BOW
+        //------------------------------------
+        //float moveX = Input.GetAxisRaw("Horizontal"); //dont want bow like that
         float moveY = Input.GetAxisRaw("Vertical");
 
         transform.localPosition += new Vector3(0, moveY, 0f) * Time.deltaTime * 5f;
@@ -75,6 +97,7 @@ public class ArrowShooter : MonoBehaviour
                 float distX = Mathf.Abs(mouseWorld.x - allpowerups[i].transform.localPosition.x);
                 float distY = Mathf.Abs(mouseWorld.y - allpowerups[i].transform.localPosition.y);
                 float dist  = distX + distY;
+                //Debug.Log("testing mouse");
 
                 if (dist < minDistance)
                 {
@@ -84,39 +107,41 @@ public class ArrowShooter : MonoBehaviour
 
             }
 
-        //    if (closestindex != -1)
-        //    {
-        //        selectedPowerup = allpowerups[closestindex];
-        //        Debug.Log("Selected Power-up: " + selectedPowerup.name);
-        //        selectedPowerup.CollectPowerUp(bowSpriterenderer, weaponmanagerscript, normalbow, doublebow, fastbow);
+            if (closestindex != -1) //commented out because it was assigned in order? 
+            {
+              //  selectedPowerup = allpowerups[closestindex];
+                Debug.Log("MOUSE: " + selectedPowerup.name); //mouse 
+                selectedPowerup.CollectPowerUp(bowSpriterenderer, weaponmanagerscript, normalbow, doublebow, fastbow);
 
-        //        Sprite selected = allpowerups[closestindex].powerupRenderer.sprite;
+                Sprite selected = allpowerups[closestindex].powerupRenderer.sprite;
 
-        //        if (selected == normalbow)
-        //        {
-        //            weaponmanagerscript.EquipArrow(abilityPrefabs[0], normalbow);
-        //        }
-        //        else if (selected == doublebow)
-        //        {
-        //            weaponmanagerscript.EquipArrow(abilityPrefabs[1], doublebow);
-        //        }
-        //        else if (selected == fastbow)
-        //        {
-        //            weaponmanagerscript.EquipArrow(abilityPrefabs[2], fastbow);
-        //        }
-        //        allpowerups[closestindex].transform.localPosition = new Vector3(1000, 1000, 0);
-        //    }
+                if (selected == normalbow)
+                {
+                    weaponmanagerscript.EquipArrow(abilityPrefabs[0], normalbow);
+                }
+                else if (selected == doublebow)
+                {
+                    weaponmanagerscript.EquipArrow(abilityPrefabs[1], doublebow);
+                }
+                else if (selected == fastbow)
+                {
+                    weaponmanagerscript.EquipArrow(abilityPrefabs[2], fastbow);
+                }
+                allpowerups[closestindex].transform.localPosition = new Vector3(1000, 1000, 0);
+            }
         }
         //-----------------------
         //FFFFFF
-        if(Input.GetKeyDown(KeyCode.F) && selectedPowerup != null && selectedPowerup.isActivated)
+        // if (Input.GetKeyDown(KeyCode.F) //&& selectedPowerup != null ) && selectedPowerup.isActivated) //test
+        // if (Input.GetKeyDown(KeyCode.F) && selectedPowerup.isActivated) //test
+        if (Input.GetKeyDown(KeyCode.F))
         {
             GameObject arrow = weaponmanagerscript.getcurrentarrow();
             if (arrow != null)
             {
                     Debug.Log("F key pressed, firing arrow with selected power-up");
-                    //Vector3 spawnPos = new Vector3(transform.localPosition.x, transform.localPosition.y, 0);
-                    //Instantiate(arrow, firePoint.position, Quaternion.identity);
+                  //  Vector3 spawnPos = new Vector3(transform.localPosition.x, transform.localPosition.y, 0); //test
+                  //  Instantiate(arrow, firePoint.position, Quaternion.identity); //test
                     GameObject newArrow = Instantiate(arrow);
 
                     if (newArrow.GetComponent<NormalArrow>() != null)
@@ -131,7 +156,7 @@ public class ArrowShooter : MonoBehaviour
                     {
                         newArrow.GetComponent<DoubleArrow>().Activate(new Vector3(firePoint.localPosition.x, transform.localPosition.y, 0f));
                     }
-                Destroy(newArrow, 5);
+                Destroy(newArrow, 5); //working
 
                 }
             }
