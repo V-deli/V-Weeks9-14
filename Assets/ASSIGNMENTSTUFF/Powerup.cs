@@ -9,6 +9,7 @@ public class Powerup : MonoBehaviour
     public SpriteRenderer powerupRenderer;
     public bool isActivated = false;
     public ArrowShooter shooter; //script
+    public WeaponManager weaponManager;
 
      void Start()
     {
@@ -18,6 +19,7 @@ public class Powerup : MonoBehaviour
     public void CollectPowerUp // v (cond) v
     (SpriteRenderer bowRenderer, WeaponManager weaponmanagerscript, Sprite normalbow, Sprite doublebow, Sprite fastbow)
     {
+        weaponManager = weaponmanagerscript;
         onPowerupcollected.Invoke();
         Sprite powerSprite = powerupRenderer.sprite;
 
@@ -38,9 +40,9 @@ public class Powerup : MonoBehaviour
 
         //    gameObject.SetActive(false);
     }
-    public void correctpowerup () //new 
+    public void correctpowerup () //new add listener reference other void
     {
-
+        //onPowerupcollected.AddListener(weaponManager.EquipArrow());
     }
 
 

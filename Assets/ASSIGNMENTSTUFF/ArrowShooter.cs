@@ -52,7 +52,8 @@ public class ArrowShooter : MonoBehaviour
         float moveY = Input.GetAxisRaw("Vertical");
 
         transform.localPosition += new Vector3(0, moveY, 0f) * Time.deltaTime * 5f;
-
+        //------------------------------------
+        //MOUSE
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mouseWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -106,8 +107,8 @@ public class ArrowShooter : MonoBehaviour
         //        allpowerups[closestindex].transform.localPosition = new Vector3(1000, 1000, 0);
         //    }
         }
-    
-
+        //-----------------------
+        //FFFFFF
         if(Input.GetKeyDown(KeyCode.F) && selectedPowerup != null && selectedPowerup.isActivated)
         {
             GameObject arrow = weaponmanagerscript.getcurrentarrow();

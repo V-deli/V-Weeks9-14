@@ -16,7 +16,8 @@ public class WeaponManager : MonoBehaviour
     private Coroutine powerupcoroutine;
     private GameObject currentarrowprefab;
 
-
+    public GameObject arrowprefab;
+    public Sprite bowArt;
 
     void Start()
     {
