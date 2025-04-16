@@ -156,11 +156,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 144845655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10.3, y: -142.6}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 98.2, y: 27.5}
   m_SizeDelta: {x: 60, y: 60}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &72861211
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,6 +388,7 @@ GameObject:
   - component: {fileID: 388567596}
   - component: {fileID: 388567598}
   - component: {fileID: 388567597}
+  - component: {fileID: 388567599}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -409,11 +410,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 144845655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -284.8, y: -151.4}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 29.5, y: 12.599976}
   m_SizeDelta: {x: 200, y: 50}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &388567597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,6 +512,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388567595}
   m_CullTransparentMesh: 1
+--- !u!114 &388567599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388567595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aed16059b6946394b95c0a85b30b487f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shooter: {fileID: 655728594}
+  screenscore: {fileID: 388567597}
 --- !u!1001 &389182417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -647,11 +662,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 144845655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 84.8, y: -142.6}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 14.2000065, y: 27.499985}
   m_SizeDelta: {x: 60, y: 60}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &557745428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -800,11 +815,6 @@ MonoBehaviour:
   normalbow: {fileID: 21300000, guid: f60d352905a5cc44abea05101ad685c0, type: 3}
   doublebow: {fileID: 21300000, guid: 9318fa0fe12466644818c3bb9378ffb0, type: 3}
   fastbow: {fileID: 21300000, guid: 4901cb152c097b0469637514a9791ff3, type: 3}
-  bowsprite: {fileID: 0}
-  allpowerupsgo:
-  - {fileID: 389182418}
-  - {fileID: 2039530823}
-  - {fileID: 1361311089}
   allpowerups:
   - {fileID: 389182418}
   - {fileID: 2039530823}
@@ -1084,7 +1094,7 @@ Transform:
   m_GameObject: {fileID: 915644225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.5, y: 0, z: 0}
+  m_LocalPosition: {x: 5.81, y: -0.13, z: 0}
   m_LocalScale: {x: 42, y: 42, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1564,11 +1574,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 144845655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -66.9, y: -142.6}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: -72, y: 27.499985}
   m_SizeDelta: {x: 60, y: 60}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1485434828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2042,7 +2052,6 @@ MonoBehaviour:
         m_CallState: 2
   powerupRenderer: {fileID: 4390353158342986455}
   isActivated: 0
-  shooter: {fileID: 655728594}
   weaponManager: {fileID: 986286212}
 --- !u!212 &3198324986891521792
 SpriteRenderer:
@@ -2289,7 +2298,6 @@ MonoBehaviour:
         m_CallState: 2
   powerupRenderer: {fileID: 3198324986891521792}
   isActivated: 0
-  shooter: {fileID: 655728594}
   weaponManager: {fileID: 986286212}
 --- !u!4 &7374441330795986225
 Transform:
@@ -2335,7 +2343,6 @@ MonoBehaviour:
         m_CallState: 2
   powerupRenderer: {fileID: 5126349050786654025}
   isActivated: 0
-  shooter: {fileID: 655728594}
   weaponManager: {fileID: 986286212}
 --- !u!114 &8485022970899440174
 MonoBehaviour:
@@ -2433,9 +2440,9 @@ SceneRoots:
   - {fileID: 1361311088}
   - {fileID: 1186449334}
   - {fileID: 986286213}
-  - {fileID: 915644227}
   - {fileID: 144845655}
   - {fileID: 1666757633}
   - {fileID: 2278164130108714825}
   - {fileID: 7374441330795986225}
   - {fileID: 2454405024845615644}
+  - {fileID: 915644227}

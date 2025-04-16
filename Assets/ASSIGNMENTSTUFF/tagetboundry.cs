@@ -35,6 +35,7 @@ public class tagetboundry : MonoBehaviour
                 // pos of current arrow powerup
                 if (shooter.allpowerups[i] != null)
                 {
+                    Debug.Log("sadasdasd");
                     Vector2 arrow = shooter.allpowerups[i].transform.position; // position of arrow
                     // IF ARROW WITHIN TARGET AREA -------------------------------
                     if (arrow.y > ydown && arrow.y < yup && arrow.x > xleft) //these are the restrictions of the variables made above
